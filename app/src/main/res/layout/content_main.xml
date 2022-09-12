@@ -17,6 +17,47 @@
         android:layout_height="60dp"
         android:layout_margin="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:textColor="@color/white"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minWidth="200dp"
+        android:minHeight="200dp"
+        android:background="@color/cardview_dark_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_cloud_download" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2">
+
+        <RadioButton
+            android:id="@+id/radio1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/glide_image_loading_library_by_bump_tech" />
+
+        <RadioButton
+            android:id="@+id/radio2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/loadapp_current_repsitory_by_udacity" />
+
+        <RadioButton
+            android:id="@+id/radio3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retrofit_type_safe_http_client_for_for_android_and_java_by_square_inc" />
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
