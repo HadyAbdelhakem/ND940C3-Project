@@ -70,7 +70,8 @@ class MainActivity : AppCompatActivity() {
             }
             if (checkedId == R.id.radio3) {
                 URL = RETROFIT_URL
-                filename = getString(R.string.retrofit_type_safe_http_client_for_for_android_and_java_by_square_inc)
+                filename =
+                    getString(R.string.retrofit_type_safe_http_client_for_for_android_and_java_by_square_inc)
             }
 
         }
@@ -80,13 +81,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please select the file to download", Toast.LENGTH_LONG).show()
                 loadingButton.hasCompletedDownload()
             } else {
-                download(URL , filename)
+                download(URL, filename)
             }
             complete = true
         }
     }
 
-    private fun download(URL: String , fileName: String) {
+    private fun download(URL: String, fileName: String) {
 
         try {
             val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
@@ -105,23 +106,27 @@ class MainActivity : AppCompatActivity() {
                 override fun onReceive(p0: Context?, p1: Intent?) {
                     var id: Long? = p1?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
                     if (id == downloadID) {
-                        val cursor = downloadManager.query(DownloadManager.Query().setFilterById(downloadID))
+                        val cursor =
+                            downloadManager.query(DownloadManager.Query().setFilterById(downloadID))
                         if (cursor.moveToFirst()) {
-                            val status = cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
+                            val status =
+                                cursor.getInt(cursor.getColumnIndex(DownloadManager.COLUMN_STATUS))
                             if (status == DownloadManager.STATUS_SUCCESSFUL) {
                                 downloadStatus = "Success"
                             } else {
                                 downloadStatus = "Fail"
                             }
                         }
-                        createNotification("Udacity: Android Kotlin Nanodegree",
+                        createNotification(
+                            "Udacity: Android Kotlin Nanodegree",
                             "The Project 3 repository is downloaded",
                             CHANNEL_ID,
                             NotificationCompat.PRIORITY_DEFAULT,
                             100,
                             fileName,
-                            downloadStatus)
-                        if (complete){
+                            downloadStatus
+                        )
+                        if (complete) {
                             loadingButton.hasCompletedDownload()
                         }
                     }
@@ -225,29 +230,33 @@ class MainActivity : AppCompatActivity() {
             .setContentIntent(pendingIntent)
             .setPriority(priority)
             .setAutoCancel(true)
+            .addAction(
+                R.drawable.ic_cloud_download, getString(R.string.check_status),
+                pendingIntent
+            )
 
-        with(NotificationManagerCompat.from(applicationContext)){
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        with(NotificationManagerCompat.from(applicationContext)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 val channel = NotificationChannel(
                     channelId,
                     channelId,
                     NotificationManager.IMPORTANCE_HIGH
                 )
                 channel.lockscreenVisibility = NotificationCompat.VISIBILITY_PUBLIC
-                createChannel(CHANNEL_ID , CHANNEL_NAME)
+                createChannel(CHANNEL_ID, CHANNEL_NAME)
             }
-            notify(notificationID , builder.build())
+            notify(notificationID, builder.build())
         }
 
     }
 
-    fun playNotificationSound(context: Context){
+    fun playNotificationSound(context: Context) {
         try {
             val defaultSoundUri =
                 RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
             val r = RingtoneManager.getRingtone(context, defaultSoundUri)
             r.play()
-        }catch (e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
         }
     }

@@ -16,4 +16,5 @@
     <string name="retrofit_type_safe_http_client_for_for_android_and_java_by_square_inc">Retrofit - Type-safe HTTP client for for Android and Java by Square, Inc</string>
     <string name="loading">We are loading</string>
     <string name="download">Download</string>
+    <string name="check_status">Check The Status</string>
 </resources>
